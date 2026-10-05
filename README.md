@@ -12,6 +12,7 @@ Download from WordPress.org: https://wordpress.org/plugins/browser-theme-color/
 
 - `theme-color` meta tag (Chrome, Edge, Samsung Internet on Android; Safari up to iOS 18)
 - Optional dark mode color via `prefers-color-scheme`
+- Experimental tinting for Safari on iOS 26+, which ignores `theme-color`
 - Filters: `browser_theme_color`, `browser_theme_color_dark`
 
 ## License

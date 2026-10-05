@@ -5,7 +5,7 @@ Donate link: https://www.paypal.me/milesimarco
 Requires at least: 5.0
 Tested up to: 7.2
 Requires PHP: 7.0
-Stable tag: 1.6
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,7 @@ When you install the plugin for the first time, the color is automatically set t
 
 * Sets the "theme-color" meta tag used by Chrome, Edge and Samsung Internet on Android, and Safari up to iOS 18
 * Optional separate color for visitors using dark mode (`prefers-color-scheme`)
+* Experimental support for Safari on iOS 26+, which ignores the "theme-color" tag
 * Color picker with live light/dark preview
 * Developer filters: `browser_theme_color` and `browser_theme_color_dark`
 * Lightweight: no external requests, no front-end scripts or styles
@@ -51,11 +52,13 @@ Yes. Set the "Dark Mode Color" field: the plugin will output two theme-color tag
 
 = Does it work on iPhone? =
 
-Up to iOS 18, Safari uses the "theme-color" tag. Starting with iOS 26, Safari ignores it and tints its toolbar using the background color of your page (or of a fixed header): to get the same color there, set it as the background of your theme's `body` or header.
+Up to iOS 18, Safari uses the "theme-color" tag. Starting with iOS 26, Safari ignores it and tints its toolbars using the background color of your page or of fixed elements at the top and bottom edges (such as a fixed header).
+
+Version 2.0 adds two experimental options, "Tint the top bar" and "Tint the bottom bar" (Settings -> Browser Theme Color), disabled by default. They add a thin strip in your theme color at the top and/or bottom edge of the page, only on iOS Safari, so Safari can pick up the color. Apple does not document this behavior and may change it: if your theme has a fixed header Safari may use its color instead, so test it on a real iPhone.
 
 = Where did the Windows Phone and iOS web app tags go? =
 
-Version 1.6 removed `msapplication-navbutton-color`, `apple-mobile-web-app-capable` and `apple-mobile-web-app-status-bar-style`. Windows Phone no longer exists, and the iOS tags did not change the color: they made your site open as a full-screen app when added to the iOS home screen. If you need that behavior, use a PWA plugin or add this snippet to your theme:
+Version 2.0 removed `msapplication-navbutton-color`, `apple-mobile-web-app-capable` and `apple-mobile-web-app-status-bar-style`. Windows Phone no longer exists, and the iOS tags did not change the color: they made your site open as a full-screen app when added to the iOS home screen. If you need that behavior, use a PWA plugin or add this snippet to your theme:
 
 `add_action( 'wp_head', function() { echo '<meta name="apple-mobile-web-app-capable" content="yes">'; } );`
 
@@ -73,18 +76,18 @@ Yes, use the filters:
 
 == Changelog ==
 
-= 1.6 2026-10-05 =
+= 2.0 2026-10-05 =
 * New: optional dark mode color, output with `prefers-color-scheme` media queries
+* New (experimental): options to tint the top and bottom bars of Safari on iOS 26+, which ignores the theme-color tag
 * New: "Settings" link in the plugins list
 * New: `browser_theme_color` and `browser_theme_color_dark` filters for developers
 * New: live preview with automatic text contrast in the settings page
 * New: plugin options are removed on uninstall
 * Improved: settings page now uses the WordPress Settings API
 * Improved: meta tags are printed earlier in `<head>`
-* Removed: obsolete `msapplication-navbutton-color` (Windows Phone) and iOS web app meta tags (`apple-mobile-web-app-capable`, `apple-mobile-web-app-status-bar-style`), which did not affect the browser color
+* Breaking: removed obsolete `msapplication-navbutton-color` (Windows Phone) and iOS web app meta tags (`apple-mobile-web-app-capable`, `apple-mobile-web-app-status-bar-style`), which did not affect the browser color
 * Fixed: settings menu name in readme
 * Plugin name now describes what it does: "Browser Theme Color – Address Bar Color & Dark Mode"
-* Docs: note about Safari on iOS 26+, which ignores the theme-color tag
 * Tested up to WordPress 7.2
 * Requires WordPress 5.0 and PHP 7.0
 
