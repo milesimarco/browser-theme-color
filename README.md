@@ -1,5 +1,7 @@
 # Browser Theme Color
 
+![Browser Theme Color – Address Bar Color & Dark Mode](.wordpress-org/banner-1544x500.png)
+
 [![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/browser-theme-color)](https://wordpress.org/plugins/browser-theme-color/)
 [![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/browser-theme-color)](https://wordpress.org/plugins/browser-theme-color/)
 [![WordPress Plugin Rating](https://img.shields.io/wordpress/plugin/rating/browser-theme-color)](https://wordpress.org/plugins/browser-theme-color/)
