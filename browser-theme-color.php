@@ -21,12 +21,11 @@ if ( ! class_exists( 'Browser_Theme_Color' ) ) :
 
 class Browser_Theme_Color {
 
-    const OPTION_NAME        = 'btc_color';
-    const OPTION_DARK        = 'btc_color_dark';
-    const OPTION_LEGACY_TAGS = 'btc_legacy_tags';
-    const DEFAULT_COLOR      = '#23282D';
-    const SETTINGS_GROUP     = 'btc_settings';
-    const PAGE_SLUG          = 'btc_settings';
+    const OPTION_NAME    = 'btc_color';
+    const OPTION_DARK    = 'btc_color_dark';
+    const DEFAULT_COLOR  = '#23282D';
+    const SETTINGS_GROUP = 'btc_settings';
+    const PAGE_SLUG      = 'btc_settings';
 
     public function __construct() {
         add_action( 'wp_head', [ $this, 'output_theme_color_meta' ], 1 );
@@ -62,12 +61,6 @@ class Browser_Theme_Color {
         } else {
             echo '<meta name="theme-color" content="' . esc_attr( $color ) . '">' . "\n";
         }
-
-        if ( $this->legacy_tags_enabled() ) {
-            echo '<meta name="msapplication-navbutton-color" content="' . esc_attr( $color ) . '">' . "\n";
-            echo '<meta name="apple-mobile-web-app-capable" content="yes">' . "\n";
-            echo '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">' . "\n";
-        }
     }
 
     public function register_settings() {
@@ -80,11 +73,6 @@ class Browser_Theme_Color {
             'type'              => 'string',
             'sanitize_callback' => [ $this, 'sanitize_dark_color' ],
             'default'           => '',
-        ] );
-        register_setting( self::SETTINGS_GROUP, self::OPTION_LEGACY_TAGS, [
-            'type'              => 'string',
-            'sanitize_callback' => [ $this, 'sanitize_checkbox' ],
-            'default'           => '1',
         ] );
     }
 
@@ -107,10 +95,6 @@ class Browser_Theme_Color {
             return $this->get_dark_color();
         }
         return $color;
-    }
-
-    public function sanitize_checkbox( $value ) {
-        return $value ? '1' : '0';
     }
 
     public function register_settings_page() {
@@ -195,9 +179,8 @@ JS;
             wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'browser-theme-color' ) );
         }
 
-        $color  = $this->get_color();
-        $dark   = $this->get_dark_color();
-        $legacy = $this->legacy_tags_enabled();
+        $color = $this->get_color();
+        $dark  = $this->get_dark_color();
         ?>
         <div class="wrap">
             <h1><?php esc_html_e( 'Browser Theme Color', 'browser-theme-color' ); ?></h1>
@@ -239,17 +222,6 @@ JS;
                             <?php $this->preview_box( 'btc-preview-dark', $dark, __( 'Dark mode preview', 'browser-theme-color' ) ); ?>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row"><?php esc_html_e( 'Legacy Tags', 'browser-theme-color' ); ?></th>
-                        <td>
-                            <label for="btc-legacy-tags">
-                                <input type="hidden" name="<?php echo esc_attr( self::OPTION_LEGACY_TAGS ); ?>" value="0" />
-                                <input type="checkbox" id="btc-legacy-tags" name="<?php echo esc_attr( self::OPTION_LEGACY_TAGS ); ?>" value="1" <?php checked( $legacy ); ?> />
-                                <?php esc_html_e( 'Also output Windows Phone and iOS web app meta tags', 'browser-theme-color' ); ?>
-                            </label>
-                            <p class="description"><?php esc_html_e( 'Adds msapplication-navbutton-color, apple-mobile-web-app-capable and apple-mobile-web-app-status-bar-style. Disable it if your site should not open as a full-screen web app when added to the iOS home screen.', 'browser-theme-color' ); ?></p>
-                        </td>
-                    </tr>
                 </table>
                 <?php submit_button(); ?>
             </form>
@@ -265,10 +237,6 @@ JS;
     public function get_dark_color() {
         $color = sanitize_hex_color( get_option( self::OPTION_DARK, '' ) );
         return $color ? $color : '';
-    }
-
-    public function legacy_tags_enabled() {
-        return '0' !== (string) get_option( self::OPTION_LEGACY_TAGS, '1' );
     }
 }
 

@@ -9,11 +9,11 @@ Stable tag: 1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Add the 'theme-color' meta tag to your website for a seamless user experience on Android & iOS with our easy-to-use plugin.
+Add the 'theme-color' meta tag to your website and color the mobile browser bar with your brand color, with optional dark mode support.
 
 == Description ==
 
-Discover a powerful solution for enhancing your website's user experience across multiple platforms with our simple, lightweight, and effective plugin that adds the "theme-color" meta tag. Compatible with Android, iOS, and Windows Phone, our plugin is designed based on Google guidelines to ensure a seamless user experience on all devices.
+Discover a powerful solution for enhancing your website's user experience across multiple platforms with our simple, lightweight, and effective plugin that adds the "theme-color" meta tag. Supported by Chrome, Edge and Samsung Internet on Android and by Safari up to iOS 18, our plugin follows the web standard to ensure a seamless user experience.
 
 In addition to its seamless compatibility, our plugin is fully customizable, allowing you to style it to match your brand's unique identity. With the option to choose from a variety of colors, you can easily tailor the "theme-color" meta tag to perfectly complement your website's design and layout.
 
@@ -21,10 +21,9 @@ When you install the plugin for the first time, the color is automatically set t
 
 = Features =
 
-* Sets the "theme-color" meta tag used by Chrome, Edge, Safari and Samsung Internet
+* Sets the "theme-color" meta tag used by Chrome, Edge and Samsung Internet on Android, and Safari up to iOS 18
 * Optional separate color for visitors using dark mode (`prefers-color-scheme`)
 * Color picker with live light/dark preview
-* Optional legacy Windows Phone and iOS web app meta tags
 * Developer filters: `browser_theme_color` and `browser_theme_color_dark`
 * Lightweight: no external requests, no front-end scripts or styles
 
@@ -50,9 +49,15 @@ You can set the color in the plugin settings screen (Settings -> Browser Theme C
 
 Yes. Set the "Dark Mode Color" field: the plugin will output two theme-color tags with `media="(prefers-color-scheme: light)"` and `media="(prefers-color-scheme: dark)"`. Leave it empty to use a single color.
 
-= What are the legacy tags? =
+= Does it work on iPhone? =
 
-`msapplication-navbutton-color` (Windows Phone), `apple-mobile-web-app-capable` and `apple-mobile-web-app-status-bar-style` (iOS). They are enabled by default for backward compatibility. Note that `apple-mobile-web-app-capable` makes your site open as a full-screen web app when added to the iOS home screen: disable the option if you don't want that.
+Up to iOS 18, Safari uses the "theme-color" tag. Starting with iOS 26, Safari ignores it and tints its toolbar using the background color of your page (or of a fixed header): to get the same color there, set it as the background of your theme's `body` or header.
+
+= Where did the Windows Phone and iOS web app tags go? =
+
+Version 1.6 removed `msapplication-navbutton-color`, `apple-mobile-web-app-capable` and `apple-mobile-web-app-status-bar-style`. Windows Phone no longer exists, and the iOS tags did not change the color: they made your site open as a full-screen app when added to the iOS home screen. If you need that behavior, use a PWA plugin or add this snippet to your theme:
+
+`add_action( 'wp_head', function() { echo '<meta name="apple-mobile-web-app-capable" content="yes">'; } );`
 
 = Can I change the color programmatically? =
 
@@ -70,14 +75,15 @@ Yes, use the filters:
 
 = 1.6 2026-10-05 =
 * New: optional dark mode color, output with `prefers-color-scheme` media queries
-* New: option to disable the legacy Windows Phone / iOS web app meta tags
 * New: "Settings" link in the plugins list
 * New: `browser_theme_color` and `browser_theme_color_dark` filters for developers
 * New: live preview with automatic text contrast in the settings page
 * New: plugin options are removed on uninstall
 * Improved: settings page now uses the WordPress Settings API
 * Improved: meta tags are printed earlier in `<head>`
+* Removed: obsolete `msapplication-navbutton-color` (Windows Phone) and iOS web app meta tags (`apple-mobile-web-app-capable`, `apple-mobile-web-app-status-bar-style`), which did not affect the browser color
 * Fixed: settings menu name in readme
+* Docs: note about Safari on iOS 26+, which ignores the theme-color tag
 * Tested up to WordPress 7.2
 * Requires WordPress 5.0 and PHP 7.0
 
