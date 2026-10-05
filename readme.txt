@@ -56,6 +56,8 @@ Up to iOS 18, Safari uses the "theme-color" tag. Starting with iOS 26, Safari ig
 
 Version 2.0 adds two experimental options, "Tint the top bar" and "Tint the bottom bar" (Settings -> Browser Theme Color), disabled by default. They add a thin strip in your theme color at the top and/or bottom edge of the page, only on iOS Safari, so Safari can pick up the color. Apple does not document this behavior and may change it: if your theme has a fixed header Safari may use its color instead, so test it on a real iPhone.
 
+Tried it on an iPhone? Please share how it behaves (iOS version, theme, and whether the bars changed color) in the [support forum](https://wordpress.org/support/plugin/browser-theme-color/): your feedback will help improve this feature.
+
 = Where did the Windows Phone and iOS web app tags go? =
 
 Version 2.0 removed `msapplication-navbutton-color`, `apple-mobile-web-app-capable` and `apple-mobile-web-app-status-bar-style`. Windows Phone no longer exists, and the iOS tags did not change the color: they made your site open as a full-screen app when added to the iOS home screen. If you need that behavior, use a PWA plugin or add this snippet to your theme:
