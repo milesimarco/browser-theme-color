@@ -1,6 +1,6 @@
-=== Browser Theme Color ===
+=== Browser Theme Color – Address Bar Color & Dark Mode ===
 Contributors: Milmor
-Tags: browser, theme, color, android, mobile
+Tags: theme-color, address bar, dark mode, mobile, android
 Donate link: https://www.paypal.me/milesimarco
 Requires at least: 5.0
 Tested up to: 7.2
@@ -9,7 +9,7 @@ Stable tag: 1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Add the 'theme-color' meta tag to your website and color the mobile browser bar with your brand color, with optional dark mode support.
+Color the mobile browser address bar with your brand color, with a separate color for dark mode.
 
 == Description ==
 
@@ -83,6 +83,7 @@ Yes, use the filters:
 * Improved: meta tags are printed earlier in `<head>`
 * Removed: obsolete `msapplication-navbutton-color` (Windows Phone) and iOS web app meta tags (`apple-mobile-web-app-capable`, `apple-mobile-web-app-status-bar-style`), which did not affect the browser color
 * Fixed: settings menu name in readme
+* Plugin name now describes what it does: "Browser Theme Color – Address Bar Color & Dark Mode"
 * Docs: note about Safari on iOS 26+, which ignores the theme-color tag
 * Tested up to WordPress 7.2
 * Requires WordPress 5.0 and PHP 7.0
