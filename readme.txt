@@ -58,12 +58,6 @@ Version 2.0 adds two experimental options, "Tint the top bar" and "Tint the bott
 
 Tried it on an iPhone? Please share how it behaves (iOS version, theme, and whether the bars changed color) in the [support forum](https://wordpress.org/support/plugin/browser-theme-color/): your feedback will help improve this feature.
 
-= Where did the Windows Phone and iOS web app tags go? =
-
-Version 2.0 removed `msapplication-navbutton-color`, `apple-mobile-web-app-capable` and `apple-mobile-web-app-status-bar-style`. Windows Phone no longer exists, and the iOS tags no longer change the browser color: they only make your site open as a full-screen app when added to the iOS home screen. If you need that behavior, use a PWA plugin or add this snippet to your theme:
-
-`add_action( 'wp_head', function() { echo '<meta name="apple-mobile-web-app-capable" content="yes">'; } );`
-
 = Can I change the color programmatically? =
 
 Yes, use the filters:
