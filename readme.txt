@@ -5,7 +5,7 @@ Donate link: https://www.paypal.me/milesimarco
 Requires at least: 5.0
 Tested up to: 7.2
 Requires PHP: 7.0
-Stable tag: 2.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -72,7 +72,7 @@ Yes, use the filters:
 
 == Changelog ==
 
-= 2.0 2026-10-05 =
+= 2.0.1 2026-10-05 =
 * New: optional dark mode color, output with `prefers-color-scheme` media queries
 * New (experimental): options to tint the top and bottom bars of Safari on iOS 26+, which ignores the theme-color tag
 * New: "Settings" link in the plugins list

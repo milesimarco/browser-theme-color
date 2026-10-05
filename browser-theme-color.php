@@ -3,7 +3,7 @@
 Plugin Name:       Browser Theme Color – Address Bar Color & Dark Mode
 Plugin URI:        https://wordpress.org/plugins/browser-theme-color/
 Description:       Simple and effective plugin to add the "theme-color" meta tag to your website, with optional dark mode color and experimental Safari iOS 26+ support.
-Version:           2.0
+Version:           2.0.1
 Requires at least: 5.0
 Requires PHP:      7.0
 Author:            Marco Milesi
