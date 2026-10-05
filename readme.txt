@@ -60,7 +60,7 @@ Tried it on an iPhone? Please share how it behaves (iOS version, theme, and whet
 
 = Where did the Windows Phone and iOS web app tags go? =
 
-Version 2.0 removed `msapplication-navbutton-color`, `apple-mobile-web-app-capable` and `apple-mobile-web-app-status-bar-style`. Windows Phone no longer exists, and the iOS tags did not change the color: they made your site open as a full-screen app when added to the iOS home screen. If you need that behavior, use a PWA plugin or add this snippet to your theme:
+Version 2.0 removed `msapplication-navbutton-color`, `apple-mobile-web-app-capable` and `apple-mobile-web-app-status-bar-style`. Windows Phone no longer exists, and the iOS tags no longer change the browser color: they only make your site open as a full-screen app when added to the iOS home screen. If you need that behavior, use a PWA plugin or add this snippet to your theme:
 
 `add_action( 'wp_head', function() { echo '<meta name="apple-mobile-web-app-capable" content="yes">'; } );`
 
@@ -73,8 +73,8 @@ Yes, use the filters:
 
 == Screenshots ==
 
-1. Theme example in Android multitasking [developers.google.com](https://developers.google.com/web/fundamentals/design-and-ui/browser-customization/theme-color)
-2. Topbar example in Android Chrome [developers.google.com](https://developers.google.com/web/fundamentals/design-and-ui/browser-customization/theme-color)
+1. Settings page: theme color, dark mode color with live previews and experimental Safari iOS 26+ options.
+2. Choose any color with the WordPress color picker.
 
 == Changelog ==
 
@@ -87,7 +87,7 @@ Yes, use the filters:
 * New: plugin options are removed on uninstall
 * Improved: settings page now uses the WordPress Settings API
 * Improved: meta tags are printed earlier in `<head>`
-* Breaking: removed obsolete `msapplication-navbutton-color` (Windows Phone) and iOS web app meta tags (`apple-mobile-web-app-capable`, `apple-mobile-web-app-status-bar-style`), which did not affect the browser color
+* Breaking: removed obsolete `msapplication-navbutton-color` (Windows Phone) and iOS web app meta tags (`apple-mobile-web-app-capable`, `apple-mobile-web-app-status-bar-style`), which no longer affect the browser color
 * Fixed: settings menu name in readme
 * Plugin name now describes what it does: "Browser Theme Color – Address Bar Color & Dark Mode"
 * Tested up to WordPress 7.2
