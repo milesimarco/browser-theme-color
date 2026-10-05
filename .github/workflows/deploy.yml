@@ -1,0 +1,38 @@
+name: Deploy to WordPress.org
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    name: Deploy release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check version consistency
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          HEADER=$(grep -m1 -E '^\s*Version:' browser-theme-color.php | awk '{print $2}')
+          STABLE=$(grep -m1 -E '^Stable tag:' readme.txt | awk '{print $3}')
+          echo "tag=$TAG header=$HEADER stable=$STABLE"
+          [ "$TAG" = "$HEADER" ] && [ "$TAG" = "$STABLE" ]
+
+      - name: WordPress plugin deploy
+        id: deploy
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        with:
+          generate-zip: true
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: browser-theme-color
+          VERSION: ${{ github.ref_name }}
+
+      - name: Attach zip to GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.deploy.outputs.zip-path }}
