@@ -2,10 +2,10 @@
 Contributors: Milmor
 Tags: browser, theme, color, android, mobile
 Donate link: https://www.paypal.me/milesimarco
-Requires at least: 3.8
-Tested up to: 6.9
-Version: 1.5
-Stable tag: 1.5
+Requires at least: 5.0
+Tested up to: 7.2
+Requires PHP: 7.0
+Stable tag: 1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,6 +19,17 @@ In addition to its seamless compatibility, our plugin is fully customizable, all
 
 When you install the plugin for the first time, the color is automatically set to #23282D, which is the standard WordPress color. From there, you can easily customize the tag to match your brand, ensuring a fully immersive user experience that keeps visitors coming back for more.
 
+= Features =
+
+* Sets the "theme-color" meta tag used by Chrome, Edge, Safari and Samsung Internet
+* Optional separate color for visitors using dark mode (`prefers-color-scheme`)
+* Color picker with live light/dark preview
+* Optional legacy Windows Phone and iOS web app meta tags
+* Developer filters: `browser_theme_color` and `browser_theme_color_dark`
+* Lightweight: no external requests, no front-end scripts or styles
+
+Development happens on GitHub: [milesimarco/browser-theme-color](https://github.com/milesimarco/browser-theme-color).
+
 Don't settle for a subpar user experience on mobile devices. Elevate your website's design and functionality with our "theme-color" meta tag plugin today, for free!
 
 == Installation ==
@@ -26,14 +37,29 @@ This section describes how to install the plugin and get it working.
 
 1. Upload `browser-theme-color` directory to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Go to the "Browser Color" settings page
+3. Go to Settings -> Browser Theme Color
 4. Choose the color you want and style it to match your style!
 
 == Frequently Asked Questions ==
 
 = How to set the color? =
 
-You can set the color in the plugin settings screen (Settings -> Browser Color).
+You can set the color in the plugin settings screen (Settings -> Browser Theme Color), or via the "Settings" link in the plugins list.
+
+= Can I use a different color in dark mode? =
+
+Yes. Set the "Dark Mode Color" field: the plugin will output two theme-color tags with `media="(prefers-color-scheme: light)"` and `media="(prefers-color-scheme: dark)"`. Leave it empty to use a single color.
+
+= What are the legacy tags? =
+
+`msapplication-navbutton-color` (Windows Phone), `apple-mobile-web-app-capable` and `apple-mobile-web-app-status-bar-style` (iOS). They are enabled by default for backward compatibility. Note that `apple-mobile-web-app-capable` makes your site open as a full-screen web app when added to the iOS home screen: disable the option if you don't want that.
+
+= Can I change the color programmatically? =
+
+Yes, use the filters:
+
+`add_filter( 'browser_theme_color', function( $color ) { return is_front_page() ? '#ff6600' : $color; } );`
+`add_filter( 'browser_theme_color_dark', '__return_empty_string' );`
 
 == Screenshots ==
 
@@ -41,6 +67,19 @@ You can set the color in the plugin settings screen (Settings -> Browser Color).
 2. Topbar example in Android Chrome [developers.google.com](https://developers.google.com/web/fundamentals/design-and-ui/browser-customization/theme-color)
 
 == Changelog ==
+
+= 1.6 2026-10-05 =
+* New: optional dark mode color, output with `prefers-color-scheme` media queries
+* New: option to disable the legacy Windows Phone / iOS web app meta tags
+* New: "Settings" link in the plugins list
+* New: `browser_theme_color` and `browser_theme_color_dark` filters for developers
+* New: live preview with automatic text contrast in the settings page
+* New: plugin options are removed on uninstall
+* Improved: settings page now uses the WordPress Settings API
+* Improved: meta tags are printed earlier in `<head>`
+* Fixed: settings menu name in readme
+* Tested up to WordPress 7.2
+* Requires WordPress 5.0 and PHP 7.0
 
 = 1.5 2025-05-26 =
 * Tested up to latest WP
